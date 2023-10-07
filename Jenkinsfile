@@ -42,7 +42,7 @@ pipeline {
              
             steps 
 			{
-                sh "docker -H ssh://ec2-user@13.127.16.243 run -d -p 8080:8080 76988/cloudhedge_registry"
+                sh "docker run -d -p 8000:8080 76988/cloudhedge_registry"
  
             }
         }
