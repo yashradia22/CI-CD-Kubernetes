@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: devops-batch
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: devops-batch
+  template:
+    metadata:
+      labels:
+        app: devops-batch
+    spec:
+      containers:
+        - name: devops-batch
+          image: yashdevopsmay/devops-batch:latest
+          ports:
+            - containerPort: 8080
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: devops-batch-service
+spec:
+  selector:
+    app: devops-batch
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
