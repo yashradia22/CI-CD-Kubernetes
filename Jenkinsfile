@@ -42,7 +42,7 @@ pipeline {
     steps {
         script {
             withCredentials([file(credentialsId: 'kubeconfig', variable: 'KUBECONFIG')]) {
-                sh 'export KUBECONFIG=$KUBECONFIG && /home/ec2-user/bin/kubectl apply -f deployments.yml'
+                sh 'export KUBECONFIG=$KUBECONFIG && kubectl apply -f deployments.yml'
             }
         }
     }
