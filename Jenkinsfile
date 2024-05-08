@@ -5,7 +5,7 @@ pipeline {
       stage('checkout') {
            steps {
              
-                git branch: 'master', url: 'https://github.com/yashradia22/CI-CD-Docker.git'
+                git branch: 'master', url: 'https://github.com/yashradia22/CI-CD-Kubernetes.git'
              
           }
         }
@@ -38,14 +38,16 @@ pipeline {
           }
         }
      
-      stage('Run Docker container on Jenkins Agent') {
-             
-            steps 
-			{
-                sh "docker run -d -p 8000:8080 yashdevopsmay/devops-batch"
- 
+      stage('Deploy to Kubernetes') {
+    steps {
+        script {
+            withCredentials([file(credentialsId: 'kubeconfig', variable: 'KUBECONFIG')]) {
+                sh 'export KUBECONFIG=$KUBECONFIG && kubectl apply -f deployments.yml'
             }
         }
+    }
+}
+
     }
 	}
     
