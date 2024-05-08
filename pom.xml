@@ -13,8 +13,11 @@
         <maven.compiler.target>1.8</maven.compiler.target>
     </properties>
     
+    <packaging>war</packaging> <!-- Specify WAR packaging -->
+    
     <build>
         <plugins>
+            <!-- Maven Compiler Plugin -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
@@ -22,6 +25,17 @@
                 <configuration>
                     <source>1.8</source>
                     <target>1.8</target>
+                </configuration>
+            </plugin>
+            
+            <!-- Maven WAR Plugin -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <version>3.3.0</version>
+                <configuration>
+                    <!-- Optional: specify web.xml location -->
+                    <!-- <webXml>src/main/webapp/WEB-INF/web.xml</webXml> -->
                 </configuration>
             </plugin>
         </plugins>
