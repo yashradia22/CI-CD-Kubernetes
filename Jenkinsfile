@@ -41,8 +41,8 @@ pipeline {
       stage('Deploy to Kubernetes') {
     steps {
         script {
-            sh 'kubectl apply -f deployments.yml'
-            
+           
+                sh 'sudo -u ec2-user kubectl apply -f deployments.yml --validate=false'
         }
     }
 }
